@@ -1,0 +1,9 @@
+{
+  "extends": "@vingogo/tsconfig/node",
+  "compilerOptions": {
+    "outDir": "lib",
+    "esModuleInterop": true
+  },
+  "include": ["src"],
+  "exclude": ["lib", "node_modules"]
+}

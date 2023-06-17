@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/consistent-indexed-object-style": ["warn", "record"],
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-console": "warn",
+    "@typescript-eslint/no-var-requires": "off"
+  }
+}

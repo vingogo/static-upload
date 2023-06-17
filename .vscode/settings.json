@@ -1,0 +1,30 @@
+{
+  // 文件扩展对应代码类型
+  "files.associations": {},
+  // editor
+  "editor.wordWrap": "off",
+  "editor.formatOnSave": true, //每次保存自动格式化
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "files.autoSave": "onFocusChange",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/node_modules": false
+  },
+  // folder搜素
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true
+  },
+  // prettier
+  "prettier.configPath": ".prettierrc.js",
+  "prettier.eslintIntegration": true, // prettier+
+  // eslint
+  "eslint.format.enable": true,
+  "eslint.options": {
+    "configFile": ".eslintrc"
+  }
+}
