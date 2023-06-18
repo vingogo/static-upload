@@ -26,7 +26,7 @@ export interface IStartCommandOptions {
   /**
    * 最大并发数
    */
-  maxConcurrency: number
+  max: number
 }
 
 export interface IWorkContext extends IConfig {

@@ -18,7 +18,7 @@ class Start {
     });
   }
 
-  async run({ maxConcurrency = 5 }: IStartCommandOptions) {
+  async run({ max = 5 }: IStartCommandOptions) {
     await this.client.initialClient();
 
     const files = this.client.findAllFiles();
@@ -50,10 +50,10 @@ class Start {
         const p = uploadIteratorFn(file);
         ret.push(p);
 
-        if (maxConcurrency <= files.length) {
+        if (max <= files.length) {
           const task: any = p.then(() => executing.splice(executing.indexOf(task), 1));
           executing.push(task);
-          if (executing.length >= maxConcurrency) {
+          if (executing.length >= max) {
             await Promise.race(executing);
           }
         }
@@ -82,14 +82,14 @@ const startCommand = {
   describe: '执行上传',
   builder: (yargs: TYargs) => {
     return yargs
-      .example('$0 start --maxConcurrency=5', '# 最大并发数设置为5')
+      .example('$0 start --max=5', '# 最大并发数设置为5')
       .options({
         config: {
           group: 'Command Options',
           describe: '配置文件',
           type: 'string',
         },
-        maxConcurrency: {
+        max: {
           group: 'Command Options',
           describe: '最大并发数配置',
           type: 'number',
