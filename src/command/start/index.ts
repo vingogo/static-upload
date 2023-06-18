@@ -1,4 +1,5 @@
 import { SingleBar } from 'cli-progress';
+import chalk from 'chalk';
 
 import OssUploader from '../../uploader/oss';
 
@@ -78,6 +79,12 @@ class Start {
     bar.stop();
     const end = Date.now();
     const cost = parseInt(String((end - start) / 1000));
+
+    console.log(
+      chalk.green(
+        `已成功上传 ${files.length} 个文件\n\n- bucket: ${this.client.context.bucket} \n- 文件夹: ${this.client.subDir} \n- 耗时：${cost}s\n`
+      )
+    );
   }
 }
 

@@ -33,7 +33,7 @@
   "dependencies": {
     "ali-oss": "^6.17.1",
     "aws-sdk": "^2.1399.0",
-    "chalk": "^5.2.0",
+    "chalk": "^4",
     "cli-progress": "^3.8.2",
     "fast-glob": "^3.2.4",
     "fs-extra": "^9.0.1",
