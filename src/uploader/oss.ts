@@ -12,7 +12,7 @@ export default class OSSUploader {
   subDir?: string;
   context: IWorkContext;
 
-  private oss: OSS;
+  private oss: OSS | undefined;
   private cwd: string;
 
   constructor({ config }: { config: string }) {
@@ -91,12 +91,11 @@ export default class OSSUploader {
   /**
    * 上传
    */
-  async upload({ file, key }: { file: string; key: string }): Promise<{ name: string; res: OSS.NormalSuccessResponse }> {
+  async upload({ file, key }: { file: string; key: string }) {
     const { oss } = this;
     try {
       const stream = fse.createReadStream(file);
-      const result = await oss.putStream(key, stream);
-      return result;
+      await oss?.putStream(key, stream);
     } catch (err: any) {
       throw new Error(err);
     }
