@@ -1,6 +1,6 @@
 {
   "name": "@vingogo/static-upload",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "upload static assets to S3 or OSS",
   "private": false,
   "main": "lib/index.js",
