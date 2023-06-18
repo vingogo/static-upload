@@ -23,7 +23,7 @@ export default class OSSUploader extends BaseUploader {
 
   private initialCredentials(): ICredential {
     if (!process.env.OSS_AK || !process.env.OSS_SK) {
-      new Error('AK and SK do not exist in environment variables')
+      throw new Error('OSS_AK and OSS_SK do not exist in environment variables')
     }
     return {
       accessKeyId: (process.env.OSS_AK) as string,

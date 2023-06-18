@@ -13,13 +13,17 @@ class Start {
     this.client = new OssUploader({ config });
 
     this.run(argv).catch((error) => {
-      console.error(error);
+      console.log(chalk.red(error));
       process.exit(-1);
     });
   }
 
   async run({ max = 5 }: IStartCommandOptions) {
-    await this.client.initialClient();
+    try {
+      await this.client.initialClient();
+    } catch (error) {
+      return Promise.reject(error);
+    }
 
     const files = this.client.findAllFiles();
 
@@ -59,7 +63,7 @@ class Start {
         }
       } catch (error) {
         bar.stop();
-        throw error;
+        return Promise.reject(error);
       }
     }
 
