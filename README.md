@@ -23,6 +23,13 @@ module.exports = {
 
 ## 使用
 
+确保运行环境能读取到环境变量，OSS 需要的参数如下：
+
+- OSS_AK: 对应 accessKeyId
+- OSS_SK: 对应 accessKeySecret
+
+执行如下命令可进行上传:
+
 ```bash
 $ static-upload start
 ```
