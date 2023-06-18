@@ -18,18 +18,11 @@ class Start {
     });
   }
 
-  /**
-   * 入口
-   * @param IStartCommandOptions
-   */
   async run({ maxConcurrency = 5 }: IStartCommandOptions) {
-    // 初始化客户端
     await this.client.initialClient();
 
-    // 获取所有文件
     const files = this.client.findAllFiles();
 
-    // 进度条
     const bar = new SingleBar({
       format:
         'progress [{bar}] {percentage}%',
@@ -41,10 +34,6 @@ class Start {
     });
     const start = Date.now();
 
-    // 获取产物存放的路径
-    await this.client.getSubDir();
-
-    // 上传fn
     const uploadIteratorFn = async (file: string) => {
       const key = this.client?.createKey(file);
 

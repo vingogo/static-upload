@@ -3,7 +3,7 @@ import type yargs from 'yargs';
 export type TSupportTarget = 'oss';
 export interface IConfig {
   bucket: string;
-  directory: string;
+  directory: (() => string) | string;
   region?: string;
   include?: string[];
   sourceMap?: { prefix: string } | null;
