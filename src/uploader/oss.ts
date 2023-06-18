@@ -2,12 +2,12 @@ import fse from 'fs-extra';
 import OSS from 'ali-oss';
 import BaseUploader from './baseUploader';
 
-import type { ICredential } from '../interface';
+import type { ICredential, IClientOptions } from '../interface';
 
 export default class OSSUploader extends BaseUploader {
   private oss: OSS | undefined;
 
-  async initialClient(): Promise<void> {
+  async initialClient(argv: IClientOptions): Promise<void> {
     const credentials = this.initialCredentials();
 
     const { region, bucket } = this.context;
@@ -18,7 +18,7 @@ export default class OSSUploader extends BaseUploader {
       ...credentials,
     });
 
-    await this.parseConfig();
+    await this.parseConfig(argv);
   }
 
   private initialCredentials(): ICredential {

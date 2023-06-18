@@ -18,9 +18,9 @@ class Start {
     });
   }
 
-  async run({ max = 5 }: IStartCommandOptions) {
+  async run({ max = 5, prefix, directory }: IStartCommandOptions) {
     try {
-      await this.client.initialClient();
+      await this.client.initialClient({ prefix, directory });
     } catch (error) {
       return Promise.reject(error);
     }
@@ -75,7 +75,7 @@ class Start {
 
     console.log(
       chalk.green(
-        `已成功上传 ${files.length} 个文件\n\n- bucket: ${this.client.context.bucket} \n- 文件夹: ${this.client.subDir} \n- 耗时：${cost}s\n`
+        `\n已成功上传 ${files.length} 个文件\n\n- bucket: ${this.client.context.bucket} \n- prefix: ${this.client.subDir} \n- 耗时：${cost}s\n`
       )
     );
   }
@@ -91,6 +91,16 @@ const startCommand = {
         config: {
           group: 'Command Options',
           describe: '配置文件',
+          type: 'string',
+        },
+        prefix: {
+          group: 'Command Options',
+          describe: '上传文件前缀',
+          type: 'string',
+        },
+        directory: {
+          group: 'Command Options',
+          describe: '待上传文件夹',
           type: 'string',
         },
         max: {

@@ -3,7 +3,7 @@ import fse from 'fs-extra';
 import { queryAllFiles } from '../utils/queryFiles';
 import * as constants from '../constants'
 
-import type { IWorkContext } from '../interface';
+import type { IWorkContext, IClientOptions } from '../interface';
 
 export default class BaseUploader {
   context: IWorkContext;
@@ -42,11 +42,11 @@ export default class BaseUploader {
     return queryAllFiles(workDir, this.directory, include)
   }
 
-  public async parseConfig() {
+  public async parseConfig(argv: IClientOptions) {
     const { context } = this;
     const { prefix, directory } = context;
-    this.subDir = typeof prefix === 'function' ? await prefix() : prefix;
-    this.directory = typeof directory === 'function' ? await directory() : directory;
+    this.subDir = argv.prefix || (typeof prefix === 'function' ? await prefix() : prefix);
+    this.directory = argv.directory || (typeof directory === 'function' ? await directory() : directory);
   }
 
   public createKey(file: string): string {

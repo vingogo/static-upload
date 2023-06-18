@@ -18,7 +18,18 @@ export interface IUploadConfig extends Omit<IConfig, 'prefix'> {
 
 export type TYargs = ReturnType<typeof yargs>;
 
-export interface IStartCommandOptions {
+export interface IClientOptions {
+  /**
+   * 上传文件前缀
+   */
+  prefix?: string;
+  /**
+   * 待上传文件夹
+   */
+  directory?: string;
+}
+
+export interface IStartCommandOptions extends IClientOptions {
   /**
    * 上传配置项
    */
@@ -26,7 +37,7 @@ export interface IStartCommandOptions {
   /**
    * 最大并发数
    */
-  max: number
+  max: number;
 }
 
 export interface IWorkContext extends IConfig {
